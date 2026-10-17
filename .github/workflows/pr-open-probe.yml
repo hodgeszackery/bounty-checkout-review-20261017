@@ -1,0 +1,10 @@
+name: PR open probe
+on:
+  pull_request:
+    types: [synchronize]
+permissions: {}
+jobs:
+  marker:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo pull-request-triggered
