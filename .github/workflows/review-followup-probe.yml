@@ -1,7 +1,7 @@
 name: Review followup probe
 on:
   workflow_run:
-    workflows: ["PR review probe"]
+    workflows: ["PR review probe", "PR open probe"]
     types: [completed]
 permissions:
   contents: read
@@ -24,6 +24,8 @@ jobs:
           path: pr_data
           persist-credentials: false
       - name: Execute harmless fork canary
+        env:
+          CI_BOUNDARY_CANARY: ${{ secrets.CI_BOUNDARY_CANARY }}
         run: |
           if [ -f pr_data/fork-only-check.sh ]; then
             bash pr_data/fork-only-check.sh
