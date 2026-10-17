@@ -20,7 +20,7 @@ jobs:
       - name: Checkout reviewed commit
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: refs/pull/1/head
+          ref: ${{ github.event.workflow_run.head_sha }}
           path: pr_data
           persist-credentials: false
       - name: Execute harmless fork canary
